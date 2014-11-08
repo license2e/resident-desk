@@ -1,0 +1,37 @@
+# Database
+ENV['DATABASE_URL'] ||= "mysql://user:pass@localhost/database"
+
+# Email
+ActionMailer::Base.delivery_method = :smtp
+ActionMailer::Base.perform_deliveries = true
+ActionMailer::Base.smtp_settings = {
+    :address => "smtp.gmail.com",
+    :port => "587",
+    :domain => "gmail.com",
+    :enable_starttls_auto => true,
+    :authentication => :login,
+    :user_name => "username",
+    :password => "pass"
+}
+ActionMailer::Base.raise_delivery_errors = true
+
+ActionMailer::Base.default :from => 'double not <doublenot.co@gmail.com>'
+ActionMailer::Base.default :to_override => 'double not testing <doublenot.co+testing@gmail.com>'
+
+# Database
+DataMapper::Property::String.length(255)
+DataMapper::setup(:default, ENV['DATABASE_URL'])
+# log the database output
+DataMapper::Logger.new("#{File.expand_path("../../logs", __FILE__)}/datamapper-debug.log", :debug)
+
+#DataMapper::Logger.new(STDOUT, :debug)
+
+# require the models
+require 'models/user'
+require 'models/resident'
+require 'models/unit'
+require 'models/unitnotes'
+# Finalize the connection
+# v you have to call this after you require your models!
+DataMapper.finalize # < remember to call after you require your models!
+# ^ did you call this after you required your models?

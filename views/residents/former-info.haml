@@ -1,0 +1,14 @@
+#resident-former-article{:data => {:role => "dialog", :theme => "c"}}
+  %form{:action => "/residents/former/#{@resident_id}/", :method => "post"}
+    %div{:data => {:role => "header"}}
+      %a{:href => "/residents/former/", :data => {:role => "button", :icon => "arrow-l ui-icon-custom", :iconpos => "notext", :corners => "false"}} Back
+      %input.ui-btn-right{:type => "submit", :name => "submit", :value => "Done", :data => {:inline => "true", :corners => "false", :icon => "check ui-icon-custom", :iconpos => "notext"}}
+      %h2
+        #unit-icon.ui-input-text.ui-icon.ui-icon-resident.ui-icon-left.hide-text
+          Unit
+        ="#{@page_subtitle}"
+    %div{:data => {:role => "content"}}
+      %h3
+        = @former.resident_name
+      %fieldset
+        %input{:type => "text", :id => "unit_no", :name => "unit_no", :value => "", :placeholder => "Unit"}

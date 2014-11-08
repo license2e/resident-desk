@@ -1,0 +1,15 @@
+#footer-spacing
+#footer{:data => {:role => "footer", :theme => "c"}}
+  %div{:data => {:role => "navbar", :iconpos => "right"}}
+    %ul#footernav
+      %li.w66
+        - if access_role?("admin") then
+          %a{:href => "/", :data => {:theme => "a"}} Dashboard
+        - else
+          \&nbsp;
+      %li.w34
+        %a{:href => "/user/#{@user[:id]}/", :data => {:theme => "a", :icon => "gear"}}= @user[:login]
+  %div{:data => {:role => "navbar", :iconpos => "right"}}
+    %ul
+      %li
+        %a{:href => "/logout/", :data => {:theme => "d"}} Logout

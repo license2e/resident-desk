@@ -1,0 +1,17 @@
+#user-add-article{:data => {:role => "dialog", :theme => "c"}}
+  %form{:action => "/user/add/", :method => "post"}
+    %div{:data => {:role => "header"}}
+      %a{:href => "/", :data => {:role => "button", :icon => "arrow-l ui-icon-custom", :iconpos => "notext", :corners => "false"}} Back
+      %input.ui-btn-right{:type => "submit", :name => "submit", :value => "Done", :data => {:inline => "true", :corners => "false", :icon => "check ui-icon-custom", :iconpos => "notext"}}
+      %h2="#{@page_subtitle}"
+    #user-add-container{:data => {:role => "content"}}
+      - @user_fields.each do |f|
+        - key = f[:key]
+        - type = f[:type] || "text"
+        - if type == "checkbox" then
+          %label{:for => "user-#{key}"}="#{f[:label]}"
+          %select{:name => "user[#{key}]", :id => "user-#{key}", :data => {:role => "slider"}}
+            %option{:value => "false"} No
+            %option{:value => "true"} Yes
+        - else
+          %input{:type => "#{type}", :id => "user-#{key}", :name => "user[#{key}]", :value => "", :placeholder => "#{f[:label]}"}

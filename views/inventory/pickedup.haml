@@ -1,0 +1,27 @@
+#inventory-pickedup-article{:data => {:role => "dialog", :theme => "a"}}
+  %div{:data => {:role => "header"}}
+    %a{:href => "/inventory/", :data => {:role => "button", :icon => "arrow-l", :iconpos => "notext", :corners => "false"}} Back
+    %h2="# #{@unit}"
+  %div{:data => {:role => "content"}}
+    - if !@deliveries.nil? then
+      %ul.pickup-list
+      %div.pickedup-list{:data => {:role => "collapsible-set", :mini => "true", :theme => "a"}}
+        - @deliveries.each do |d|
+          %div{ :data => {:role => "collapsible", :iconpos => "right"}, :"data-collapsed-icon" => "arrow-d", :"data-expanded-icon" => "arrow-u"}
+            %h3
+              %strong
+                ="#{d.created_at.strftime("%b %-d, %Y")}"
+              %span.ui-li-count.ui-btn-up-c.ui-btn-corner-all
+                ="#{d.packages_number}"
+            %div
+              - if !d.user.nil? then
+                .concierge
+                  %em
+                    Concierge:
+                  = "#{d.user.first_name} #{d.user.last_name[0..0]}."
+              .picked-up-by
+                %em
+                  Resident:
+                = "#{d.resident.resident_name}"
+    %hr
+    = haml :"shared/notes"

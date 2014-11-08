@@ -1,0 +1,16 @@
+#residents-former-article{:data => {:role => "page", :theme => "c"}}
+  = haml :"shared/header"
+  %div{:data => {:role => "content"}}
+    #inventory-list{:class => "mt50"}
+      - if !@formers.nil? && !@formers.empty? then
+        %ul{:data => {:role => "listview", :theme => "a", :filter => "true"}, :"data-filter-placeholder" => "Search by unit number or name...", :"data-filter-input-type" => "tel"}
+          - @formers.each do |f|
+            %li{:data => {:icon => "false"}}
+              %a{:href => "/residents/former/#{f.id}/"}="#{f.resident_name || "&nbsp;"}"
+              %span.ui-li-count
+                ="#{f.unit}"
+        - else
+          %p
+            %em
+              No former residents.
+  = haml :"shared/footer"

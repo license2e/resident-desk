@@ -1,0 +1,21 @@
+#residents-emails-article{:data => {:role => "dialog", :theme => "c"}}
+  %div{:data => {:role => "header"}}
+    %a{:href => "/residents/", :data => {:role => "button", :icon => "arrow-l ui-icon-custom", :iconpos => "notext", :corners => "false"}} Back
+    %h2= @page_subtitle
+  %div{:data => {:role => "content"}}
+    #clipboard-container.ui-body-d
+      %a#clipboard-close.ui-icon-noborder.ui-icon-nobackground{:href => "#close", :data => {:role => "button", :theme => "a", :icon => "delete ui-icon-red", :iconpos => "notext"}} Close
+      %textarea#clipboard{:data => {:role => "none"}}
+    %a{:href => "/residents/emails/all/", :class => "clipboard-ajax", :data => {:role => "button", :theme => "a", :shadow => "false", :icon => "resident ui-icon-custom"}}
+      All Residents
+    %hr
+    %div{:data => {:role => "fieldcontain"}}
+      - (2..27).each do |f|
+        %a.floors{:href => "/residents/emails/#{f}/", :class => "clipboard-ajax", :data => {:role => "button", :inline => "true", :theme => "a", :shadow => "false"}}
+          %span.floor
+            ="#{f}"
+          %hr
+          Floor
+    %hr.flipped
+    %a{:href => "/residents/emails/pets/", :class => "clipboard-ajax", :data => {:role => "button", :theme => "a", :shadow => "false", :icon => "pet ui-icon-custom"}}
+      Residents w/Pets

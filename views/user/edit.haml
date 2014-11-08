@@ -1,0 +1,23 @@
+#user-edit-article{:data => {:role => "dialog", :theme => "c"}}
+  %form{:action => "/user/#{@user_data.id}/edit/", :method => "post"}
+    %div{:data => {:role => "header"}}
+      %a{:href => "/", :data => {:role => "button", :icon => "arrow-l ui-icon-custom", :iconpos => "notext", :corners => "false"}} Back
+      %input.ui-btn-right{:type => "submit", :name => "submit", :value => "Done", :data => {:inline => "true", :corners => "false", :icon => "check ui-icon-custom", :iconpos => "notext"}}
+      %h2="#{@page_subtitle}"
+    #user-edit-container{:data => {:role => "content"}}
+      %input{:type => "hidden", :name => "user[id]", :value => "#{@user_data.id}"}
+      - @user_fields.each do |f|
+        - key = f[:key]
+        - check_access_role = f[:access_role] || nil
+        - if check_access_role == nil || ( !check_access_role.nil? && access_role?(check_access_role) && @user[:id] != @user_data.id )
+          - type = f[:type] || "text"
+          - if type == "checkbox" then
+            %label{:for => "user-#{key}"}="#{f[:label]}"
+            %select{:name => "user[#{key}]", :id => "user-#{key}", :data => {:role => "slider"}}
+              %option{:value => "false", :selected => (@user_data[key] == false) ? "selected" : false} No
+              %option{:value => "true", :selected => (@user_data[key] == true) ? "selected" : false} Yes
+          - else
+            %input{:type => "#{type}", :id => "user-#{key}", :name => "user[#{key}]", :value => "#{@user_data[key]}", :placeholder => "#{f[:label]}"}
+  - if access_role?("admin") && @user[:id] != @user_data.id
+    %div{:data => {:role => "content"}}
+      %a#delete-user-info{:href => "/user/#{@user_data.id}/delete/", :data => {:role => "button", :theme => "d"}} Delete user

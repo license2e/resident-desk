@@ -1,0 +1,27 @@
+#checkin-article{:data => {:role => "page", :theme => "c"}}
+  = haml :"shared/header"  
+  %div{:data => {:role => "content"}}
+    .mt40
+      %form{:id => "checkin-form", :action => "/checkin/", :method => "post" }
+        %input{:type => "tel", :placeholder => "Unit #", :id => "unit_no", :name => "checkin[unit_no]"}
+        %input{:type => "text", :id => "resident_name", :placeholder => "Name", :name => "checkin[name]"}
+        %hr.top-only
+        #checkin-qty{:data => {:role => "fieldcontain"}}
+          %label{:for => "qty"}
+            Quantity
+          %fieldset#qty_helpers{:data => {:role => "controlgroup", :type => "horizontal"}}
+            - (1..10).each do |p|
+              %input{:type => "radio", :name => "qty_helper", :id=>"qty_choice_#{p}", :value => "#{p}", :checked => p == 1 ? "checked" : false, :data => {:theme => "a", :corners => "false"}}
+              %label{:for => "qty_choice_#{p}"}="#{p}"
+            %input{:type => "range", :id => "qty", :value => "1", :min => "1", :max => "99", :name => "checkin[qty]", :data => {:theme => "c"}}
+        %hr
+        #checkin-resident-container
+          %input#resident{:type => "hidden", :name => "checkin[resident_unit]", :value => ""}
+          #checkin-icon.ui-input-text.ui-icon.ui-icon-resident.ui-icon-alt.hide-text
+            Resident(s)
+          #checkin-resident
+            %em
+              Please find a resident using the fields above. Thank you!
+        %hr
+        %input#checkin-submit.ui-btn-icon-offcentre{:type => "submit", :disabled => "disabled", :value => "Send Email", :name => "submit", :data => {:iconpos => "left ui-btn-icon-offcentre checkin-submit-container", :icon => "email"}}
+  = haml :"shared/footer"

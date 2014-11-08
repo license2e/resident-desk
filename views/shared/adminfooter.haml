@@ -1,0 +1,9 @@
+%div{:data => {:role => "footer"}}
+  #nav-user
+    %a{:href => "#user", :data => {:role => "button", :icon => "gear", :theme => "a"}} User
+  #user-menu{:data => {:role => "content", :theme => "a"}}
+    ="#{@user[:first_name]} #{@user[:last_name]}"
+    %hr
+    - if @user[:is_admin] == true then
+      %a{:href => "/", :data => {:role => "button", :mini => "true", :theme => "a", :icon => "home"}} Admin
+    %a{:href => "/logout/", :data => {:role => "button", :mini => "true", :theme => "a", :icon => "back"}} Logout

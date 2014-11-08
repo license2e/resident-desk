@@ -1,0 +1,34 @@
+#inventory-article{:data => {:role => "page", :theme => "c"}}
+  = haml :"shared/header"
+  %div{:data => {:role => "content"}}
+    #inventory-list{:class => "mt50"}
+      - if !@deliveries.nil? && !@deliveries.empty? then
+        %a#inventory-history-jump{:href => "#history", :data => {:role => "button", :shadow => "false", :mini => "true"}}="History"
+        %ul{:data => {:role => "listview", :theme => "a", :filter => "true"}, :"data-filter-placeholder" => "Search by unit number...", :"data-filter-input-type" => "tel"}
+          - @deliveries.each do |d|
+            %li{:data => {:icon => "false"}}
+              %a{:href => "/inventory/#{d.unit}/pickup/"}="# #{d.unit}"
+              %span.ui-li-count
+                ="#{d.packages_number.to_i}"
+        - else
+          %p
+            %em
+              No recent deliveries.
+      %br.clear
+    %hr
+    #inventory-history{:data => {:role => "collapsible", :theme => "c"}, :"data-content-theme" => "c"}
+      %h3
+        History
+      %div
+        - if !@deliveries_pickedup.nil? && !@deliveries_pickedup.empty? then
+          %ul{:data => {:role => "listview", :theme => "a", :filter => "true"}, :"data-filter-placeholder" => "Search by unit number...", :"data-filter-input-type" => "tel"}
+            - @deliveries_pickedup.each do |d|
+              %li{:data => {:icon => "false"}}
+                %a{:href => "/inventory/#{d.unit}/pickedup/"}="# #{d.unit}"
+                %span.ui-li-count.ui-btn-up-a
+                  ="#{d.packages_number.to_i}"
+          - else
+            %p
+              %em
+                No pickups in the last week.
+  = haml :"shared/footer"

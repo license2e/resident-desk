@@ -1,0 +1,5 @@
+*.DS_Store
+logs/*.log
+.bundle
+Gemfile.lock
+config/app_settings*

@@ -1,0 +1,28 @@
+%h3#notes-header.ui-icon.ui-icon-notes.ui-icon-alt.hide-text
+  Note(s)
+%form#resident-note-form{:action => "/resident-unit/#{@unit}/add-note/", :method => "post"}
+  %ul.note-item{:data => {:role => "listview", :inset => "true", :theme => "a"}}
+    %li.note-text.note-textarea{:data => {:theme => "e"}}
+      %textarea#resident-note-textarea{:placeholder => "New note...", :name => "new_note", :class => "ui-input-text", :data => {:role => "none"}}
+      %a#resident-note-add.ui-icon-noborder.ui-icon-nocorners.ui-icon-fill{:href => "#", :data => {:role => "splitbutton", :icon => "plus ui-icon-custom", :theme => "a"}} Add Note
+#note-container
+  - if !@unitNotes.nil? then
+    - @unitNotes.each do |n|
+      %ul.note-item{:data => {:role => "listview", :inset => "true", :theme => "e"}}
+        %li.note-text
+          =#%a{:href => "#", :style => "display: none;"} test
+          %div.note-text-wrap{:href => "#show-details-#{n.id}"}
+            ="#{n.note}"
+          %a.note-delete.ui-icon-noborder.ui-icon-nocorners.ui-icon-fill{:href => "/resident-unit/#{@unit}/delete-note/#{n.id}/", :data => {:role => "splitbutton", :icon => "delete ui-icon-custom", :theme => "a"}} Delete
+        %li.note-text-details
+          %hr
+          - if !n.user.nil? then
+            .note-concierge
+              %em
+                Concierge:
+              = "#{n.user.first_name} #{n.user.last_name[0..0]}."
+          .note-created
+            %em
+              Created:
+            ="#{n.created_at.strftime("%b %-d, %Y")}"
+          %br.clear

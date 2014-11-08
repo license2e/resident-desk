@@ -1,0 +1,27 @@
+#home-article{:data => {:role => "page", :theme => "c"}}
+  = haml :"shared/header"
+  %div{:data => {:role => "content"}}
+    %hr
+    %h3
+      Concierge
+    - if !@conciergeList.nil? && !@conciergeList.empty? then
+      %ul{:data => {:role => "listview", :theme => "a"}}
+        - @conciergeList.each do |cu|
+          %li
+            %a{:href => "/user/#{cu.id}/"}="#{cu.first_name} #{cu.last_name[0..0]}."
+    - else
+      %em
+        No concierge users added.
+    %hr
+    %h3
+      Leasing Office
+    - if !@leasingList.nil? && !@leasingList.empty? then
+      %ul{:data => {:role => "listview", :theme => "a"}}
+        - @leasingList.each do |lu|
+          %li
+            %a{:href => "/user/#{lu.id}/"}="#{lu.first_name} #{lu.last_name[0..0]}."
+    - else
+      %em
+        No leasing office users added.
+    %a#add-user{:href => "/user/add/", :data => {:role => "button", :icon => "plus", :iconpos => "right"}} Add users
+  = haml :"shared/footer"

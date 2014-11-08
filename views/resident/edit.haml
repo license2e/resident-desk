@@ -1,0 +1,54 @@
+#unit-edit-article{:data => {:role => "dialog", :theme => "c"}}
+  %form{:action => "/resident-unit/#{@unit}/edit/", :method => "post"}
+    %div{:data => {:role => "header"}}
+      %a{:href => "/resident-unit/#{@unit}/", :data => {:role => "button", :icon => "arrow-l ui-icon-custom", :iconpos => "notext", :corners => "false"}} Back
+      %input.ui-btn-right{:type => "submit", :name => "submit", :value => "Done", :data => {:inline => "true", :corners => "false", :icon => "check ui-icon-custom", :iconpos => "notext"}}
+      %h2
+        #unit-icon.ui-input-text.ui-icon.ui-icon-resident.ui-icon-left.hide-text
+          Unit
+        ="#{@page_subtitle}"
+    #resident-container{:data => {:role => "content"}}
+      %fieldset#resident-sublease
+        %legend
+          Sublease
+        %input{:type => "text", :id => "sublease", :name => "options[sublease]", :value => !@unitOptions.nil? ? @unitOptions.sublease : "", :placeholder => "Sublease"}
+      #resident-edit        
+        - if !@residents.nil? && !@residents.empty? then
+          - i = 0
+          - @residents.each do |r|
+            .resident-container.ui-body.ui-body-d.ui-body-noborder
+              %fieldset
+                %legend 
+                  - if !r.id.nil? then
+                    %a.resident-delete.ui-icon-noborder.ui-icon-nocorners.ui-icon-fill.ui-icon-nobackground{:id => "resident-delete-#{r.id}", :href => "/resident-unit/#{@unit}/delete/#{r.id}/", :data => {:role => "button", :icon => "delete ui-icon-red", :iconpos => "notext", :theme => "d"}} Moved out
+                  .resident-legend
+                    = "Resident <span class=\"resident-count\">#{(i+1)}</span>"
+                  %br.clear
+                - if !r.id.nil? then
+                  %input{:type => "hidden", :name => "resident[#{i}][id]", :value => "#{r.id}"}
+                - @residentFields.each do |key, f|
+                  - type = f[:type] || "text"
+                  %input{:type => "#{type}", :id => "#{key}-#{i}", :name => "resident[#{i}][#{key}]", :value => "#{r[key]}", :placeholder => "#{f[:label]}"}
+            - i = i+1
+        - if i < 4 then
+          #resident-clone-container
+          .resident-add-container.ui-body.ui-body-d.ui-body-noborder
+            %a#resident-add.ui-icon-noborder.ui-icon-nocorners.ui-icon-fill.ui-icon-nobackground{:href => "#resident-add", :data => {:role => "button", :icon => "plus ui-icon-custom", :iconpos => "notext", :theme => "a"}} Add
+            .resident-legend
+              = "Resident <span class=\"resident-count\">#{(i+1)}</span>"
+            %br.clear
+          - i = i+1
+          %input#next-resident{:type => "hidden", :name => "next-resident", :value => "#{i}"}
+      .resident-container-options.ui-body.ui-body-d.ui-body-noborder
+        %fieldset{:data => {:role => "controlgroup", :type => "horizontal"}}
+          %legend
+            Number of pets
+          %input{:type => "radio", :id => "pets-0", :name => "options[pets]", :value => "0", :checked => @unitOptions.nil? || (!@unitOptions.nil? && @unitOptions.pets == 0) ? "checked" : nil, :data => {:theme => "c"}}
+          %label{:for => "pets-0"}="0"
+          %input{:type => "radio", :id => "pets-1", :name => "options[pets]", :value => "1", :checked => (!@unitOptions.nil? && @unitOptions.pets == 1) ? "checked" : nil, :data => {:theme => "c"}}
+          %label{:for => "pets-1"}="1"
+          %input{:type => "radio", :id => "pets-2", :name => "options[pets]", :value => "2", :checked => (!@unitOptions.nil? && @unitOptions.pets == 2) ? "checked" : nil, :data => {:theme => "c"}}
+          %label{:for => "pets-2"}="2"
+  %div{:data => {:role => "content"}}
+    %a#clear-unit-info{:href => "/resident-unit/#{@unit}/delete/all/", :data => {:role => "button", :theme => "d"}} All moved out
+      

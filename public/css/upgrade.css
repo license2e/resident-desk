@@ -1,0 +1,138 @@
+body, p, ul, h1 {
+  padding: 0; margin: 0;
+}
+
+body {
+  font-family: "Oswald";
+  font-weight: 400;
+  font-size: 18px;
+  color: #777;
+}
+
+#header, #article, #footer {
+  width: 1010px;
+  padding: 0 20px;
+  margin: auto;
+  text-align: center;
+}
+
+#footer {
+  text-align: center;
+  margin-top: 25px;
+}
+
+#header {
+  margin-top: 80px;
+  margin-bottom: 60px;
+}
+
+h1 {
+  font-size: 35px;
+  font-weight: 700;
+  color: #303030;
+}
+.clear {
+  clear: both;
+}
+.hide-text,
+#upgrade-browsers li a {
+  text-indent: 110%;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+
+
+
+#upgrade-browsers {
+  margin-top: 70px;
+  margin-bottom: 100px;
+  list-style: none;
+  text-align: left;
+}
+#upgrade-browsers li a {
+  display: block;
+  width: 170px;
+  height: 230px;
+  float: left;
+  margin: 0 15px;
+}
+#upgrade-browsers #chrome a {
+  background-image: url('images/upgrade/chrome-n.jpg');
+}
+#upgrade-browsers #firefox a {
+  background-image: url('images/upgrade/firefox-n.jpg');
+}
+#upgrade-browsers #safari a {
+  background-image: url('images/upgrade/safari-n.jpg');
+}
+#upgrade-browsers #opera a {
+  background-image: url('images/upgrade/opera-n.jpg');
+}
+#upgrade-browsers #internetexplorer a {
+  background-image: url('images/upgrade/internetexplorer-n.jpg');
+}
+#upgrade-browsers #chrome a:hover {
+  background-image: url('images/upgrade/chrome-h.jpg');
+}
+#upgrade-browsers #firefox a:hover {
+  background-image: url('images/upgrade/firefox-h.jpg');
+}
+#upgrade-browsers #safari a:hover {
+  background-image: url('images/upgrade/safari-h.jpg');
+}
+#upgrade-browsers #opera a:hover {
+  background-image: url('images/upgrade/opera-h.jpg');
+}
+#upgrade-browsers #internetexplorer a:hover {
+  background-image: url('images/upgrade/internetexplorer-h.jpg');
+}
+
+#upgrade-definition {
+  color: #303030;
+  font-size: 15px;
+  margin: auto;
+  width: 764px;
+  margin-top: 40px;
+}
+#upgrade-definition cite {
+  display: block;
+  text-align: right;
+  font-weight: 300;
+  font-style: normal;
+  text-transform: lowercase;
+}
+#upgrade-definition cite a,
+#upgrade-definition cite a:hover,
+#upgrade-definition cite a:visited,
+#upgrade-definition cite a:focus {
+  color: #303030;
+}
+
+#upgrade-copyright {
+  font-size: 15px;
+  color: #969696;
+}
+
+
+
+
+
+@font-face {
+  font-family: 'Oswald';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Oswald Bold'), local('Oswald-Bold'), url(http://themes.googleusercontent.com/static/fonts/oswald/v5/bH7276GfdCjMjApa_dkG6bO3LdcAZYWl9Si6vvxL-qU.woff) format('woff');
+}
+@font-face {
+  font-family: 'Oswald';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Oswald Light'), local('Oswald-Light'), url(http://themes.googleusercontent.com/static/fonts/oswald/v5/HqHm7BVC_nzzTui2lzQTDbO3LdcAZYWl9Si6vvxL-qU.woff) format('woff');
+}
+@font-face {
+  font-family: 'Oswald';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Oswald '), local('Oswald'), url(http://themes.googleusercontent.com/static/fonts/oswald/v5/qpy-UiLNKP-VfOdbcs6r6-vvDin1pK8aKteLpeZ5c0A.woff) format('woff');
+}

@@ -1,0 +1,49 @@
+!!!
+%html{:lang => "en", "xml:lang" => "en", :xmlns => "http://www.w3.org/1999/xhtml"}
+  %head
+    %meta{:content => "text/html; charset=utf-8", "http-equiv" => "Content-type"}/
+    = title_tag
+    %link{:rel => "stylesheet", :href => "/css/upgrade.css"}
+    %script{:src => "/js/jquery-1.7.2.min.js"}
+    %script{:src => "/js/app-init.js"}
+    %script{:src => "/js/app-upgrade.js"}
+    %meta{:name => "viewport", :content => "width=device-width, initial-scale=1, maximum-scale=1"}
+    %meta{:name => "apple-mobile-web-app-status-bar-style", :content => "black-translucent"}
+    /[if lte IE 7]
+      %meta{:"http-equiv" => "X-UA-Compatible", :content => "IE=Edge,chrome=1"}
+    %link{:rel => "shortcut icon", :href => "/favicon.ico" }
+    %link{:rel => "icon", :href => "/favicon.gif", :type => "image/gif" }
+    %link{:rel => "apple-touch-icon", :href => "/apple-touch-icon-57x57.png"}
+    %link{:rel => "apple-touch-icon", :sizes => "72x72", :href => "/apple-touch-icon-72x72.png"}
+    %link{:rel => "apple-touch-icon", :sizes => "114x114", :href => "/apple-touch-icon-114x114.png"}
+    %link{:rel => "apple-touch-icon", :sizes => "144x144", :href => "/apple-touch-icon-144x144.png"}
+  %body{:id=>"#{@body_id}"}
+    #header
+      %h1
+        Dear Web User, Please Upgrade Your Browser
+    #article
+      #upgrade-explanation
+        %p
+          Your browser is outdated. To view this page, please download one of the current browsers below!
+        %p
+          Old browsers don't support new Web technologies.
+      %ul#upgrade-browsers
+        %li#chrome
+          %a{:href => "http://www.google.com/chrome"} Google Chrome
+        %li#firefox
+          %a{:href => "http://www.mozilla.com/firefox/"} Firefox
+        %li#safari
+          %a{:href => "http://www.apple.com/safari/"} Safari
+        %li#opera
+          %a{:href => "http://www.opera.com/"} Opera
+        %li#internetexplorer
+          %a{:href => "http://www.microsoft.com/windows/internet-explorer/default.aspx"} Internet Explorer
+      %br.clear
+      #upgrade-definition
+        A web browser is a software application for retrieving, presenting, and traversing information resources on the World Wide Web.
+        %cite
+          %a{:href => "http://en.wikipedia.org/wiki/Web_browser"}= "- Wiki"
+    #footer
+      #upgrade-copyright
+        engineered by EON Media Group
+      

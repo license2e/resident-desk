@@ -1,0 +1,53 @@
+!!!
+%html{:lang => "en", "xml:lang" => "en", :xmlns => "http://www.w3.org/1999/xhtml"}
+  %head
+    %meta{:content => "text/html; charset=utf-8", :"http-equiv" => "Content-type"}
+    %meta{:name => "viewport", :content => "width=device-width, user-scalable=no"} 
+    %style
+      \body {font-family:Arial, Helvetica, sans-serif;font-size:17px;color:#474747;background:#fafafa;padding:0;margin:0;}
+      \@media only screen and (max-device-width: 480px) {
+      \ body { width: 400px !important; margin: 0; padding: 0; }
+      \ table[class="wrapper"] { width: 400px !important; }
+      \ td[class="headertop"] { height: 30px !important; }
+      \ td[class="headerlogo"] { padding: 9px 27px 11px 27px !important; }
+      \ td[class="bodymiddle"] { padding: 25px 27px 78px 27px !important; }
+      \ td[class="bodymiddle"] div[class="text"] { padding: 0 0 30px 0 !important; }
+      \ td[class="bodymiddle"] div[class="signature"] { padding: 0 0 60px 0 !important; }
+      \ td[class="bodymiddle"] div[class="address"] { padding: 0 15px !important; }
+      \ td[class="bodymiddle"] div[class="address"] table { margin: 7px 0 15px 0 !important; }
+      \ td[class="bodymiddle"] div[class="address"] table td[class="left"] { padding: 0 8px 0 0 !important; font-size: 10px !important; }
+      \ td[class="bodymiddle"] div[class="address"] table td[class="right"] { padding: 0 0 0 8px !important; font-size: 10px !important; }
+      \}
+  %body{:style => "font-family:Arial, Helvetica, sans-serif;font-size:17px;color:#474747;background:#fafafa;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:0;margin-left:0;margin-right:0;margin-top:0;"}
+    %table.wrapper{:width => "611", :cellpadding => "0", :cellspacing => "0", :style => "font-family:Arial, Helvetica, sans-serif;color:#474747;background:#ffffff;font-size:17px;color:#474747;margin-bottom:auto;margin-left:auto;margin-right:auto;margin-top:auto;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;"}<
+      %tr
+        %td.headertop{:height => "40"}<
+      %tr
+        %td.headerlogo{:height => "70", :style => "background:#004a5f;padding-bottom:6px;padding-left:70px;padding-right:70px;padding-top:6px;"}<
+          %img{:src => "http://static.residentdesk.com/css/images/logo-w.png?3", :height => "54", :alt => "RESIDENT DESK", :style => "display: block;"}>
+      %tr
+        %td.bodymiddle{:style => "color:#474747;background:#ffffff;padding-bottom:50px;padding-left:70px;padding-right:70px;padding-top:50px;"}<>
+          %div.text{:style => "padding-bottom:20px;padding-left:0;padding-right:0;padding-top:0;font-weight:bold;"}<>
+            ="Greetings!"
+          %div.text{:style => "padding-bottom:20px;padding-left:0;padding-right:0;padding-top:0;"}<>
+            ="Unit #{@email_options[:unit]} has received #{@email_options[:qty] > 1 ? "#{@email_options[:qty]} packages" : "a package" } on #{@email_options[:created_on].strftime("%a, %b %-d, %Y")}."
+            %br>
+            Please stop by the Concierge desk at your earliest convenience for retrieval.
+          %div.signature{:style => "padding-bottom:100px;padding-left:0;padding-right:0;padding-top:0;"}<>
+            Sincerely,
+            %br>
+            ResidentDesk Concierge
+          %div.address{:style => "padding-bottom:0;padding-left:40px;padding-right:40px;padding-top:0;"}
+            %hr{:style=>"border: 1px solid #ffffff;border-bottom-color:#e5e5e5;border-top-color:#bdbdbd;"}
+            %table{:style => "width:100%;color:#777777;font-family:Arial, Helvetica, sans-serif;margin-bottom:16px;margin-left:0;margin-right:0 ;margin-top:12px;font-size:11px;"}
+              %tr<>
+                %td{:colspan => "2", :align => "center", :style => "padding-bottom:10px;padding-left:8px;padding-right:8px;padding-top:0;font-size:11px;"}
+                  1800 Camden Rd. Suite 107/123, Charlotte, NC 28202
+              %tr<>
+                %td{:align => "center", :style => "padding-bottom:0;padding-left:8px;padding-right:8px;padding-top:0;font-size:11px;"}
+                  tel: +1 (704) 980-9715
+              %tr<>
+                %td{:align => "center", :style => "padding-bottom:0;padding-left:8px;padding-right:8px;padding-top:0;font-size:11px;"}
+                  fax: +1 (704) 980-9715
+          %hr{:style=>"border: 1px solid #ffffff;border-bottom-color:#e5e5e5;border-top-color:#bdbdbd;"}
+

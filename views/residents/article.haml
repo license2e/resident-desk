@@ -1,0 +1,22 @@
+#residents-article{:data => {:role => "page", :theme => "c"}}
+  = haml :"shared/header"
+  %div{:data => {:role => "content"}}
+    .mt40
+      = haml :"shared/search"
+      %hr
+      %div{:data => {:role => "fieldcontain"}}
+        - (2..27).each do |f|
+          %a.floors{:href => "/resident-floor/#{f}/", :data => {:role => "button", :inline => "true", :theme => "a", :shadow => "false"}}
+            %span.floor
+              ="#{f}"
+            %hr
+            Floor
+      %hr
+      .desktop-cols
+        .col.col50
+          %a#resident-emails{:href => "/residents/emails/", :data => {:role => "button", :theme => "a"}}
+            Resident Emails
+        .col.col50.last
+          %a#resident-emails{:href => "/residents/former/", :data => {:role => "button", :theme => "a"}}
+            Former Residents
+  = haml :"shared/footer"

@@ -1,0 +1,29 @@
+#residents-floor-article{:data => {:role => "page", :theme => "c"}}
+  = haml :"shared/header"
+  .m40
+    #residents-floor-top
+      .floor-top-smaller
+        %hr
+        %h3
+          ="#{@floor} Floor"
+        %hr
+  %div{:data => {:role => "content"}}
+    %ul{:data => {:role => "listview", :theme => "a"}}
+      - (1..18).each do |u|
+        - unit = "#{@floor}#{format('%02d', u)}"
+        - if valid_unit?(unit) then
+          %li{:data => {:icon => "false"}}
+            .floor-residents-container
+              - if !@residents[:"#{unit}"].nil? && @residents[:"#{unit}"][:"all"].count > 0 then
+                - (1..@residents[:"#{unit}"][:"all"].count).each do |i|
+                  .floor-residents.ui-input-text.ui-icon.ui-icon-resident.ui-icon-custom.hide-text
+                    ="#{i}"
+                - if @residents[:"#{unit}"][:"pets"] > 0 then
+                  .floor-separator
+                    \&nbsp;
+                  - (1..@residents[:"#{unit}"][:"pets"]).each do |p|
+                    .floor-pets.ui-input-text.ui-icon.ui-icon-pet.ui-icon-custom.hide-text
+                      ="#{p}"
+            %a{:href => "/resident-unit/#{unit}/"}
+              ="# #{unit}"
+  = haml :"shared/footer"

@@ -1,0 +1,10 @@
+%div#header{:data => {:role => "header", :theme => "none"}}
+  %div#nav-bar{:data => {:role => "navbar"}}
+    %ul#nav-list
+      - if !access_role?("leasing") then
+        %li
+          %a{:href => "/checkin/", :class => "#{if @uri.starts_with?('/checkin') then "ui-btn-active" end }", :data => {:icon => "checkin", :theme => "c"}} Check In
+        %li
+          %a{:href => "/inventory/", :class => "#{if @uri.starts_with?('/inventory') then "ui-btn-active" end }", :data => {:icon => "inventory", :theme => "c"}} Inventory
+      %li
+        %a{:href => "/residents/", :class => "#{if @uri.starts_with?('/resident') then "ui-btn-active" end }", :data => {:icon => "residents", :theme => "c"}} Residents

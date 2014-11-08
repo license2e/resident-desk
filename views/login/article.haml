@@ -1,0 +1,17 @@
+#login-article{:data => {:role => "dialog", :theme => "d"}}  
+  %div{:data => {:role => "header", :theme => "d"}}
+    %img#logo{:src => "/css/images/logo.png", :alt => "Catalyst logo", :title => "Catalyst | Delivery"}
+  %div.ui-corner-none{:data => {:role => "content", :corners => "false" }}
+    %form{:id => "login-form", :action => "/login/", :method => "post" }
+      %input{:type => "text", :id => "username", :name => "login[username]", :placeholder => "User"}
+      %input{:type => "password", :id => "password", :name => "login[password]", :placeholder => "Password"}
+      #remember-me
+        %label{:for => "remember"}
+          %em
+            Remember Me
+        %input{:type => "checkbox", :id => "remember", :name => "login[remember]"}
+      #login-button
+        %input{:type => "submit", :id => "login-submit", :value => "Login", :name => "submit", :data => {:theme => "c", :iconpos => "right", :corners => "false"}}
+      #engineered.align-center
+        engineered by EON Media Group
+        

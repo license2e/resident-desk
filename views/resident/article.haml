@@ -1,0 +1,50 @@
+#unit-article{:data => {:role => "dialog", :theme => "a"}}
+  %div{:data => {:role => "header"}}
+    %a{:href => @back_url, :data => {:role => "button", :icon => "arrow-l ui-icon-custom", :iconpos => "notext", :corners => "false"}} Back
+    %h2
+      #unit-icon.ui-input-text.ui-icon.ui-icon-resident.ui-icon-left.hide-text
+        Unit
+      ="#{@page_subtitle}"
+    %a{:href => "/resident-unit/#{@unit}/edit/", :data => {:role => "button", :icon => "edit ui-icon-custom", :iconpos => "notext", :corners => "false"}} Edit
+  %div{:data => {:role => "content"}}  
+    .m40.unit-residents
+      - if !@unitOptions.nil? && !@unitOptions.sublease.nil? then
+        .mlr30.sublease
+          = "#{@unitOptions.sublease}"
+          %hr
+      - cars = []
+      - if !@residents.nil? then
+        - @residents.each do |r|
+          .mlr40
+            - if !r.license_plate.nil? && r.license_plate != "" then
+              - cars << r.license_plate
+            = "#{r.resident_name}"
+            %br
+            = "#{r.email_address}"
+            - if !r.email_address2.nil? then
+              %br
+              = "#{r.email_address2}"
+            %br
+            %a{:href => "tel:#{r.phone_number}"}="#{r.phone_number}"
+            - if !r.phone_number2.nil? then
+              %br
+              %a{:href => "tel:#{r.phone_number2}"}="#{r.phone_number2}"
+          %hr
+      - if !@unitOptions.nil? && !@unitOptions.pets.nil? && @unitOptions.pets > 0 then
+        #pet-cage.mlr40
+          - (1..@unitOptions.pets).each do |i|
+            .ui-input-text.ui-icon.ui-icon-pet.ui-icon-left.ui-icon-custom.hide-text
+              = "Pet: ##{i}"
+        %hr
+      - if !cars.nil? && cars.count > 0 then
+        #license-plate-container.mlr40
+          %ul
+            - cs = cars.size - 1
+            - (0..cs).each do |c|
+              %li{:class => c == cs ? "last" : nil }
+                .ui-input-text.ui-icon.ui-icon-car.ui-icon-left.ui-icon-custom
+                .license-plate
+                  = "#{cars[c]}"
+          %br.clear
+        %hr
+    = haml :"shared/notes"

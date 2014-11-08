@@ -1,0 +1,19 @@
+#unit-article{:data => {:role => "dialog", :theme => "a"}}
+  %div{:data => {:role => "header"}}
+    %a{:href => '/', :data => {:role => "button", :icon => "arrow-l ui-icon-custom", :iconpos => "notext", :corners => "false"}} Back
+    %h2
+      ="#{@page_subtitle}"
+    %a{:href => "/user/#{@user_data.id}/edit/", :data => {:role => "button", :icon => "edit ui-icon-custom", :iconpos => "notext", :corners => "false"}} Edit
+  %div{:data => {:role => "content"}}  
+    .m40.unit-residents
+      - if !@user_data.nil? then
+        .mlr40
+          = "#{@user_data.first_name} #{@user_data.last_name[0..0]}."
+          %br
+          = "#{@user_data.email_address}"
+          %br
+          %a{:href => "tel:#{@user_data.phone_number}"}="#{@user_data.phone_number}"
+          - if !@user_data.phone_number2.nil? && !@user_data.phone_number2.empty? then
+            %br
+            %a{:href => "tel:#{@user_data.phone_number2}"}="#{@user_data.phone_number2}"
+        %hr

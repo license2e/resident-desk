@@ -1,0 +1,22 @@
+#inventory-pickup-article{:data => {:role => "dialog", :theme => "a"}}
+  %div{:data => {:role => "header"}}
+    %a{:href => "/inventory/", :data => {:role => "button", :icon => "arrow-l ui-icon-custom", :iconpos => "notext", :corners => "false"}} Back
+    %h2="# #{@unit}"
+  %div{:data => {:role => "content"}}
+    %form#inventory-pickup-form{:action => "/inventory/#{@unit}/pickup/", :method => "post"}
+      - if !@deliveries.nil? then
+        %ul.pickup-list
+          - @deliveries.each do |d|
+            %li
+              %strong
+                ="#{d.created_at.strftime("%b %-d, %Y")}"
+              %span.ui-li-count.ui-btn-up-c.ui-btn-corner-all
+                ="#{d.packages_number}"
+              %input{:type => "hidden", :name => "delivery[ids][]", :value => "#{d.id}"}
+      - if !@residents.nil? then
+        - @residents.each do |r|
+          %input{:type => "radio", :id => "pickedup-by-#{r.id}", :name => "delivery[pickedup_by]", :value => "#{r.id}", :data => {:theme => "a"}}
+          %label{:for => "pickedup-by-#{r.id}"}
+            ="#{r.resident_name}"
+    %hr
+    = haml :"shared/notes"
